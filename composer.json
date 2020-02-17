@@ -9,7 +9,6 @@
         }
     ],
     "version":"1.0.0",
-    "minimum-stability": "dev",
     "description": "Разработка для удобного обращения с API различных сервисов. Работает на версии php 5.5+",
     "require": {
         "ext-curl": "*",
