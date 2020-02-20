@@ -3,7 +3,7 @@
  * Общий пример использования библиотеки. Отправка методом GET
  */
 
-require_once __DIR__ . '/api-manager/src/autoload.php';
+require_once __DIR__ . '/api-manager/src/bootstrap.php';
 
 use ApiManager\Application\ApiManager;
 use ApiManager\Application\Classes\DataGuard;

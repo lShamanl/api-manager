@@ -33,7 +33,7 @@ try {
 Просто скопируйте один из готовых кейсов из папке "Example", положите его в папку с Вашим проектом и проверьте, что к нему подключен autoloader:
 
 ```php
-require_once __DIR__ . '/api-manager/src/autoload.php';
+require_once __DIR__ . '/api-manager/src/bootstrap.php';
 ```
 
 #### Общий пример использования библиотеки
