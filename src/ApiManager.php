@@ -92,7 +92,7 @@ class ApiManager
     public function sendGet(array $getParams = null)
     {
         if (isset($getParams)) {
-            $this->apiService->setGetParams($getParams);
+            $this->apiService->addGetParams($getParams);
         }
 
         return $this->apiService->sendGet();
@@ -106,7 +106,7 @@ class ApiManager
     public function sendPostForm(array $postParams = null)
     {
         if (isset($postParams)) {
-            $this->apiService->setPostParams($postParams);
+            $this->apiService->addPostParams($postParams);
         }
 
         return $this->apiService->sendPost(false);
