@@ -1,6 +1,7 @@
 <?php
 
-use ApiManager\Application\Services\ApiService\Components\ApiAnswer;
+
+use ApiAnswer\Application\ApiAnswer;
 
 require_once __DIR__ . '/../vendor/autoload.php';
 

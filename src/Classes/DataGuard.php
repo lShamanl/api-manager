@@ -2,8 +2,9 @@
 
 
 namespace ApiManager\Application\Classes;
+use ApiAnswer\Application\ApiAnswer;
 use ApiManager\Application\Exceptions\InvalidDataException;
-use ApiManager\Application\Services\ApiService\Components\ApiAnswer;
+
 
 class DataGuard
 {

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "644073e5bb22a2dfdc02029e9bde04a7",
+    "content-hash": "7a8efc7f5cb1fb2b26c33eef4c758d4d",
     "packages": [
         {
             "name": "guzzlehttp/guzzle",
@@ -194,6 +194,42 @@
                 "url"
             ],
             "time": "2019-07-01T23:21:34+00:00"
+        },
+        {
+            "name": "lshamanl/api-answer",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/lShamanl/api-answer.git",
+                "reference": "37292b609fd7a272c40dde2775641efeaff6df74"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/lShamanl/api-answer/zipball/37292b609fd7a272c40dde2775641efeaff6df74",
+                "reference": "37292b609fd7a272c40dde2775641efeaff6df74",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "ApiAnswer\\Application\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "lShamanl",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Универсальный формат для создания ответов от API",
+            "time": "2020-03-02T09:48:24+00:00"
         },
         {
             "name": "psr/http-message",

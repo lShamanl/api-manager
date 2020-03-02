@@ -12,7 +12,8 @@
     "require": {
         "ext-curl": "*",
         "ext-json": "*",
-        "guzzlehttp/guzzle": "~6.0"
+        "guzzlehttp/guzzle": "~6.0",
+        "lshamanl/api-answer": "^1.0"
     },
     "autoload": {
         "psr-4": {

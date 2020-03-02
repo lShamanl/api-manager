@@ -4,7 +4,7 @@
 namespace ApiManager\Application\Services\ApiService;
 
 
-use ApiManager\Application\Services\ApiService\Components\ApiAnswer;
+use ApiAnswer\Application\ApiAnswer;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Psr7\Uri;
