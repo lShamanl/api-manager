@@ -55,11 +55,11 @@ try {
         ])
         ->sendGet();
 
-    echo ApiAnswer::responseOk('Принято',ApiAnswer::CODE_202_ACCEPTED, true); exit;
+    echo ApiAnswer::responseOk('Принято', ApiAnswer::CODE_202_ACCEPTED, true); exit;
 } catch (Exception $e) {
-    echo ApiAnswer::responseError($e,true); exit;
+    echo ApiAnswer::responseError($e, true); exit;
 } catch (GuzzleException $e) {
-    echo ApiAnswer::responseError($e,true); exit;
+    echo ApiAnswer::responseError($e, true); exit;
 }
 ```
 
@@ -83,11 +83,11 @@ try {
         ])
         ->sendPostForm();
 
-    echo ApiAnswer::responseOk('Принято',ApiAnswer::CODE_202_ACCEPTED, true); exit;
+    echo ApiAnswer::responseOk('Принято', ApiAnswer::CODE_202_ACCEPTED, true); exit;
 } catch (Exception $e) {
-    echo ApiAnswer::responseError($e,true); exit;
+    echo ApiAnswer::responseError($e, true); exit;
 } catch (GuzzleException $e) {
-    echo ApiAnswer::responseError($e,true); exit;
+    echo ApiAnswer::responseError($e, true); exit;
 }
 ```
 
@@ -111,10 +111,31 @@ try {
         ])
         ->sendPostJson();
 
-    echo ApiAnswer::responseOk('Принято',ApiAnswer::CODE_202_ACCEPTED, true); exit;
+    echo ApiAnswer::responseOk('Принято', ApiAnswer::CODE_202_ACCEPTED, true); exit;
 } catch (Exception $e) {
-    echo ApiAnswer::responseError($e,true); exit;
+    echo ApiAnswer::responseError($e, true); exit;
 } catch (GuzzleException $e) {
-    echo ApiAnswer::responseError($e,true); exit;
+    echo ApiAnswer::responseError($e, true); exit;
 }
 ```
+
+### Ответ от сервера
+При обращении к серверу с помощью функций:
+- ...->sendGet()
+- ...->sendPostForm()
+- ...->sendPostJson()
+
+Возвращается объект класса "SendInfo", из которого можно получить следующую информацию:
+```
+Array
+(
+    [typeQuery] => ТИП_ОТПРАВКИ
+    [url] => URL_НА_КОТОРЫЙ_ОСУЩЕСТВЛЯЛАСЬ_ОТПРАВКА
+    [getParams] => МАССИВ_С_ПЕРЕДАННЫМИ_GET-ПАРАМЕТРАМИ
+    [postParams] => МАССИВ_С_ПЕРЕДАННЫМИ_POST-ПАРАМЕТРАМИ
+    [response] => ОТВЕТ_ОТ_СЕРВЕРА
+)
+```
+
+### Другое:
+https://github.com/lShamanl/api-answer - документация по ApiAnswer

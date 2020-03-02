@@ -7,7 +7,7 @@ require_once __DIR__ . '/api-manager/src/bootstrap.php';
 
 use ApiManager\Application\ApiManager;
 use ApiManager\Application\Classes\DataGuard;
-use ApiManager\Application\Services\ApiService\Components\ApiAnswer;
+use ApiAnswer\Application\ApiAnswer;
 use GuzzleHttp\Exception\GuzzleException;
 
 try {
@@ -25,9 +25,9 @@ try {
         ])
         ->sendGet();
 
-    echo ApiAnswer::responseOk('Принято',ApiAnswer::CODE_202_ACCEPTED, true); exit;
+    echo ApiAnswer::responseOk('Принято', ApiAnswer::CODE_202_ACCEPTED, true); exit;
 } catch (Exception $e) {
-    echo ApiAnswer::responseError($e,true); exit;
+    echo ApiAnswer::responseError($e, true); exit;
 } catch (GuzzleException $e) {
-    echo ApiAnswer::responseError($e,true); exit;
+    echo ApiAnswer::responseError($e, true); exit;
 }
