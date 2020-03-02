@@ -3,6 +3,7 @@
 
 namespace ApiManager\Application;
 
+use ApiManager\Application\Components\SendInfo;
 use ApiManager\Application\Services\ApiService\ApiService;
 use Exception;
 use GuzzleHttp\Exception\GuzzleException;
@@ -86,7 +87,7 @@ class ApiManager
 
     /**
      * @param array|null $getParams
-     * @return string
+     * @return SendInfo
      * @throws GuzzleException
      */
     public function sendGet(array $getParams = null)
@@ -95,7 +96,9 @@ class ApiManager
             $this->apiService->addGetParams($getParams);
         }
 
-        return $this->apiService->sendGet();
+        $response = $this->apiService->sendGet();
+
+        return new SendInfo(SendInfo::GET_QUERY, $this->apiService->getUrl(), $response, $this->apiService->getGetParams());
     }
 
     /**
@@ -109,7 +112,9 @@ class ApiManager
             $this->apiService->addPostParams($postParams);
         }
 
-        return $this->apiService->sendPost(false);
+        $response = $this->apiService->sendPost(false);
+
+        return new SendInfo(SendInfo::POST_FORM_DATA_QUERY, $this->apiService->getUrl(), $response, $this->apiService->getGetParams(), $this->apiService->getPostParams());
     }
 
     /**
@@ -123,6 +128,7 @@ class ApiManager
             $this->apiService->setPostParams($postParams);
         }
 
-        return $this->apiService->sendPost(true);
+        $response = $this->apiService->sendPost(true);
+        return new SendInfo(SendInfo::POST_JSON_QUERY, $this->apiService->getUrl(), $response, $this->apiService->getGetParams(), $this->apiService->getPostParams());
     }
 }
