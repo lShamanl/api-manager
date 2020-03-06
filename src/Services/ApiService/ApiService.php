@@ -11,6 +11,7 @@ use GuzzleHttp\Psr7\Uri;
 
 class ApiService
 {
+
     /** @var string */
     private $url;
 

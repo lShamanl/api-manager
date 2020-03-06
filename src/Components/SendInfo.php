@@ -6,9 +6,6 @@ namespace ApiManager\Application\Components;
 
 class SendInfo
 {
-    const GET_QUERY = 'get';
-    const POST_FORM_DATA_QUERY = 'post-form-data';
-    const POST_JSON_QUERY = 'post-json';
 
     /** @var string */
     protected $url;
