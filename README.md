@@ -134,7 +134,7 @@ try {
     /** Отправка через магический метод send() */
     $a = $apiManager->send(ApiManager::POST_FORM_DATA, ['get_param1' => 'get_value_1'], ['fio' => 'Имя 1', 'phone' => 16546846848]);
 
-    /** Отправка через магический метод __invoce() */
+    /** Отправка через магический метод __invoke() */
     $b = $apiManager(ApiManager::POST_FORM_DATA, [], ['fio' => '2 Имя', 'phone' => 6544864484]);
     $c = $apiManager(ApiManager::POST_FORM_DATA, [], ['fio' => 'Имя 33', 'phone' => 355413485]);
 
