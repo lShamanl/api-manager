@@ -21,7 +21,19 @@ class ApiManager
     const POST_JSON = 'json';
 
     /** @var ApiService */
-    protected $apiService;
+    protected static $apiService;
+
+    /** @var string */
+    private $url;
+
+    /** @var array */
+    private $headers;
+
+    /** @var array */
+    private $getParams;
+
+    /** @var array */
+    private $postParams;
 
     /**
      * ApiManager constructor.
@@ -30,8 +42,8 @@ class ApiManager
      */
     public function __construct($url)
     {
-        $this->apiService = new ApiService();
-        $this->apiService->setUrl($url);
+        self::$apiService = (self::$apiService instanceof ApiService) ? self::$apiService : new ApiService();
+        $this->setUrl($url);
     }
 
     /**
@@ -47,10 +59,10 @@ class ApiManager
         $apiManagerClone = clone $this;
 
         if (!empty($getParams)) {
-            $apiManagerClone->apiService->addGetParams($getParams);
+            $apiManagerClone->addGetParams($getParams);
         }
         if (!empty($postParams)) {
-            $apiManagerClone->apiService->addPostParams($postParams);
+            $apiManagerClone->addPostParams($postParams);
         }
 
         switch ($method) {
@@ -60,6 +72,21 @@ class ApiManager
         }
 
         throw new MainAppException('Не существующий метод');
+    }
+
+    /**
+     * @param string $url
+     * @return $this
+     * @throws MainAppException
+     */
+    public function setUrl($url)
+    {
+        if (!filter_var($url, FILTER_VALIDATE_URL)) {
+            throw new MainAppException("Кажется это '{$url}' - не является URL");
+        }
+
+        $this->url = $url;
+        return $this;
     }
 
     /**
@@ -79,63 +106,102 @@ class ApiManager
     }
 
     /**
-     * @param array $getParams
-     * @return ApiManager
-     */
-    public function setGetParams(array $getParams)
-    {
-        $this->apiService->setGetParams($getParams);
-        return $this;
-    }
-
-    /**
-     * @param array $headers
-     * @return ApiManager
-     */
-    public function setHeaders(array $headers)
-    {
-        $this->apiService->setHeaders($headers);
-        return $this;
-    }
-
-    /**
+     * Добавляет GET-параметры к запросу
      * @param array $getParams
      * @return ApiManager
      */
     public function addGetParams(array $getParams)
     {
-        $this->apiService->addGetParams($getParams);
+        if (!empty($getParams)) {
+            foreach ($getParams as $key => $param) {
+                if (!isset($param)) { continue; }
+                $this->getParams[$key] = $param;
+            }
+        }
+
         return $this;
     }
 
     /**
-     * @param array $headers
-     * @return ApiManager
-     */
-    public function addHeaders(array $headers)
-    {
-        $this->apiService->addHeaders($headers);
-        return $this;
-    }
-
-    /**
+     * Добавляет POST-параметры к запросу
      * @param array $postParams
      * @return ApiManager
      */
     public function addPostParams(array $postParams)
     {
-        $this->apiService->addPostParams($postParams);
+        if (!empty($postParams)) {
+            foreach ($postParams as $key => $param) {
+                if (!isset($param)) { continue; }
+                $this->postParams[$key] = $param;
+            }
+        }
+
         return $this;
     }
 
     /**
-     * @param array $postParams
+     * Добавляет заголовки к запросу
+     * @param array $headers
      * @return ApiManager
+     */
+    public function addHeaders(array $headers)
+    {
+        if (!empty($headers)) {
+            foreach ($headers as $key => $param) {
+                if (!isset($param)) { continue; }
+                $this->headers[$key] = $param;
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @param array $getParams
+     */
+    public function setGetParams(array $getParams)
+    {
+        $this->getParams = $getParams;
+    }
+
+    /**
+     * @param array $postParams
      */
     public function setPostParams(array $postParams)
     {
-        $this->apiService->setPostParams($postParams);
-        return $this;
+        $this->postParams = $postParams;
+    }
+
+    /**
+     * @return array
+     */
+    public function getPostParams()
+    {
+        return $this->postParams;
+    }
+
+    /**
+     * @return array
+     */
+    public function getGetParams()
+    {
+        return $this->getParams;
+    }
+
+    /**
+     * @return string
+     */
+    public function getUrl()
+    {
+        return $this->url;
+    }
+
+    /**
+     * @param array $headers
+     */
+    public function setHeaders($headers)
+    {
+        $this->headers = $headers;
     }
 
     /**
@@ -146,12 +212,12 @@ class ApiManager
     public function sendGet(array $getParams = null)
     {
         if (isset($getParams)) {
-            $this->apiService->addGetParams($getParams);
+            $this->addGetParams($getParams);
         }
 
-        $response = $this->apiService->sendGet();
+        $response = self::$apiService->sendGet($this->getUrl(), $this->getGetParams(), $this->getHeaders());
 
-        return new SendInfo(self::GET_QUERY, $this->apiService->getUrl(), $response, $this->apiService->getGetParams());
+        return new SendInfo(self::GET_QUERY, $this->getUrl(), $response, $this->getGetParams());
     }
 
     /**
@@ -162,12 +228,11 @@ class ApiManager
     public function sendPostForm(array $postParams = null)
     {
         if (isset($postParams)) {
-            $this->apiService->addPostParams($postParams);
+            $this->addPostParams($postParams);
         }
 
-        $response = $this->apiService->sendPost(false);
-
-        return new SendInfo(self::POST_FORM_DATA, $this->apiService->getUrl(), $response, $this->apiService->getGetParams(), $this->apiService->getPostParams());
+        $response = self::$apiService->sendPostForm($this->getUrl(), $this->getGetParams(), $this->getPostParams(), $this->getHeaders());
+        return new SendInfo(self::POST_FORM_DATA, $this->getUrl(), $response, $this->getGetParams(), $this->getPostParams());
     }
 
     /**
@@ -178,10 +243,18 @@ class ApiManager
     public function sendPostJson(array $postParams = null)
     {
         if (isset($postParams)) {
-            $this->apiService->setPostParams($postParams);
+            $this->setPostParams($postParams);
         }
 
-        $response = $this->apiService->sendPost(true);
-        return new SendInfo(self::POST_JSON, $this->apiService->getUrl(), $response, $this->apiService->getGetParams(), $this->apiService->getPostParams());
+        $response = self::$apiService->sendPostJson($this->getUrl(), $this->getGetParams(), $this->getPostParams(), $this->getHeaders());
+        return new SendInfo(self::POST_JSON, $this->getUrl(), $response, $this->getGetParams(), $this->getPostParams());
+    }
+
+    /**
+     * @return array
+     */
+    public function getHeaders()
+    {
+        return $this->headers;
     }
 }

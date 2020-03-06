@@ -16,6 +16,9 @@ class SendInfo
     /** @var array */
     protected $postParams;
 
+    /** @var array */
+    protected $headers;
+
     /** @var string */
     protected $response;
 
@@ -29,11 +32,12 @@ class SendInfo
      * @param string $response
      * @param array $getParams
      * @param array $postParams
+     * @param array $headers
      */
-    public function __construct($typeQuery, $url, $response, $getParams = [], $postParams = [])
+    public function __construct($typeQuery, $url, $response, array $getParams = [], array $postParams = [], array $headers = [])
     {
         $this->typeQuery = $typeQuery;
-        $this->setRequestInfo($url, $getParams, $postParams);
+        $this->setRequestInfo($url, $getParams, $postParams, $headers);
         $this->setResponseInfo($response);
     }
 
@@ -42,12 +46,14 @@ class SendInfo
      * @param string $url
      * @param array $getParams
      * @param array $postParams
+     * @param array $headers
      */
-    protected function setRequestInfo($url, $getParams = [], $postParams = [])
+    protected function setRequestInfo($url, array $getParams = [], array $postParams = [], array $headers = [])
     {
         $this->url = $url;
         $this->getParams = $getParams;
         $this->postParams = $postParams;
+        $this->headers = $headers;
     }
 
     /**
@@ -70,6 +76,7 @@ class SendInfo
             'url' => $this->url,
             'getParams' => $this->getParams,
             'postParams' => $this->postParams,
+            'headers' => $this->headers,
             'response' => $this->response,
         ];
     }
@@ -121,5 +128,13 @@ class SendInfo
     public function getTypeQuery()
     {
         return $this->typeQuery;
+    }
+
+    /**
+     * @return array
+     */
+    public function getHeaders()
+    {
+        return $this->headers;
     }
 }
