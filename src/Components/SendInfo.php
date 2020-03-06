@@ -85,4 +85,44 @@ class SendInfo
     {
         return print_r($this->toArray(),true);
     }
+
+    /**
+     * @return string
+     */
+    public function getUrl()
+    {
+        return $this->url;
+    }
+
+    /**
+     * @return array
+     */
+    public function getGetParams()
+    {
+        return $this->getParams;
+    }
+
+    /**
+     * @return array
+     */
+    public function getPostParams()
+    {
+        return $this->postParams;
+    }
+
+    /**
+     * @return string
+     */
+    public function getResponse()
+    {
+        return $this->response;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTypeQuery()
+    {
+        return $this->typeQuery;
+    }
 }
