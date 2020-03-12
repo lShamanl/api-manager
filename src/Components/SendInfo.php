@@ -34,7 +34,7 @@ class SendInfo
      * @param array $postParams
      * @param array $headers
      */
-    public function __construct($typeQuery, $url, $response, array $getParams = [], array $postParams = [], array $headers = [])
+    public function __construct($typeQuery, $url, $response, $getParams = [], $postParams = [], $headers = [])
     {
         $this->typeQuery = $typeQuery;
         $this->setRequestInfo($url, $getParams, $postParams, $headers);
@@ -48,7 +48,7 @@ class SendInfo
      * @param array $postParams
      * @param array $headers
      */
-    protected function setRequestInfo($url, array $getParams = [], array $postParams = [], array $headers = [])
+    protected function setRequestInfo($url, $getParams = [], $postParams = [], $headers = [])
     {
         $this->url = $url;
         $this->getParams = $getParams;
