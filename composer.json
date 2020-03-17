@@ -13,7 +13,7 @@
         "ext-curl": "*",
         "ext-json": "*",
         "guzzlehttp/guzzle": "~6.0",
-        "lshamanl/api-answer": "^1.0"
+        "lshamanl/api-answer": "^1.1"
     },
     "autoload": {
         "psr-4": {

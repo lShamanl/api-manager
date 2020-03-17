@@ -4,11 +4,10 @@
  */
 require_once __DIR__ . '/src/bootstrap.php';
 
-use ApiAnswer\Application\ApiAnswer;
-use ApiManager\Application\ApiManager;
-use ApiManager\Application\Classes\DataGuard;
-
 use GuzzleHttp\Exception\GuzzleException;
+use lShamanl\ApiAnswer\ApiAnswer;
+use lShamanl\ApiManager\ApiManager;
+use lShamanl\ApiManager\Classes\DataGuard;
 
 try {
     DataGuard::required([

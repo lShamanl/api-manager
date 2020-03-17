@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7a8efc7f5cb1fb2b26c33eef4c758d4d",
+    "content-hash": "64359ae3da0c3830408bcde2a65eede0",
     "packages": [
         {
             "name": "guzzlehttp/guzzle",
@@ -197,16 +197,16 @@
         },
         {
             "name": "lshamanl/api-answer",
-            "version": "1.0.0",
+            "version": "1.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/lShamanl/api-answer.git",
-                "reference": "37292b609fd7a272c40dde2775641efeaff6df74"
+                "reference": "03ba3572b643d4474c59b1da2d1470cd2a204046"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/lShamanl/api-answer/zipball/37292b609fd7a272c40dde2775641efeaff6df74",
-                "reference": "37292b609fd7a272c40dde2775641efeaff6df74",
+                "url": "https://api.github.com/repos/lShamanl/api-answer/zipball/03ba3572b643d4474c59b1da2d1470cd2a204046",
+                "reference": "03ba3572b643d4474c59b1da2d1470cd2a204046",
                 "shasum": ""
             },
             "require": {
@@ -215,7 +215,7 @@
             "type": "library",
             "autoload": {
                 "psr-4": {
-                    "ApiAnswer\\Application\\": "src/"
+                    "lShamanl\\ApiAnswer\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -229,7 +229,7 @@
                 }
             ],
             "description": "Универсальный формат для создания ответов от API",
-            "time": "2020-03-02T09:48:24+00:00"
+            "time": "2020-03-17T15:47:31+00:00"
         },
         {
             "name": "psr/http-message",
