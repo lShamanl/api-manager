@@ -1,14 +1,14 @@
 <?php
 
 
-namespace ApiManager\Application\Exceptions;
+namespace lShamanl\ApiManager\Exceptions;
 
 
 /**
  * Class ApiException
- * @package ApiManager\Application\Exceptions
+ * @package lShamanl\ApiManager\Exceptions
  */
-class ApiException extends MainAppException
+class ApiException extends ApiManagerException
 {
 
 }

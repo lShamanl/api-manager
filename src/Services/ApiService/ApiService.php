@@ -1,7 +1,7 @@
 <?php
 
 
-namespace ApiManager\Application\Services\ApiService;
+namespace lShamanl\ApiManager\Services\ApiService;
 
 
 use GuzzleHttp\Client;

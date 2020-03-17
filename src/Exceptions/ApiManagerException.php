@@ -6,17 +6,17 @@
  * Time: 13:20
  */
 
-namespace ApiManager\Application\Exceptions;
+namespace lShamanl\ApiManager\Exceptions;
 
 use Exception;
 
 
 /**
- * Class MainAppException
- * @package ApiManager\Application\Exceptions
+ * Class ApiManagerException
+ * @package lShamanl\ApiManager\Exceptions
  * Это основной класс исключений, от которого нужно наследовать все остальные, используемые для данного приложения.
  */
-class MainAppException extends Exception
+class ApiManagerException extends Exception
 {
     public function __construct($message, $code = 500, Exception $previous = null) {
         parent::__construct($message, $code, $previous);

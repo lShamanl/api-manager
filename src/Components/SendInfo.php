@@ -1,7 +1,7 @@
 <?php
 
 
-namespace ApiManager\Application\Components;
+namespace lShamanl\ApiManager\Components;
 
 
 class SendInfo

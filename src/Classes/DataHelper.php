@@ -1,7 +1,7 @@
 <?php
 
 
-namespace ApiManager\Application\Classes;
+namespace lShamanl\ApiManager\Classes;
 
 
 class DataHelper

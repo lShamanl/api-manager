@@ -1,11 +1,11 @@
 <?php
 
 
-namespace ApiManager\Application;
+namespace lShamanl\ApiManager;
 
 /**
  * Interface PluginInterface
- * @package ApiManager\Application
+ * @package lShamanl\ApiManager
  * @method ApiManager apiManager()
  */
 interface PluginInterface

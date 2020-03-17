@@ -1,9 +1,9 @@
 <?php
 
 
-namespace ApiManager\Application\Classes;
+namespace lShamanl\ApiManager\Classes;
 use ApiAnswer\Application\ApiAnswer;
-use ApiManager\Application\Exceptions\InvalidDataException;
+use lShamanl\ApiManager\Exceptions\InvalidDataException;
 
 
 class DataGuard

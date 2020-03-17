@@ -1,13 +1,13 @@
 <?php
 
 
-namespace ApiManager\Application\Exceptions;
+namespace lShamanl\ApiManager\Exceptions;
 
 /**
  * Class InvalidDataException
- * @package ApiManager\Application\Exceptions
+ * @package lShamanl\ApiManager\Exceptions
  */
-class InvalidDataException extends MainAppException
+class InvalidDataException extends ApiManagerException
 {
 
 }

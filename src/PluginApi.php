@@ -1,7 +1,7 @@
 <?php
 
 
-namespace ApiManager\Application;
+namespace lShamanl\ApiManager;
 
 
 /**

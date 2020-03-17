@@ -1,18 +1,18 @@
 <?php
 
 
-namespace ApiManager\Application;
+namespace lShamanl\ApiManager;
 
-use ApiManager\Application\Components\SendInfo;
-use ApiManager\Application\Exceptions\MainAppException;
-use ApiManager\Application\Services\ApiService\ApiService;
+use lShamanl\ApiManager\Components\SendInfo;
+use lShamanl\ApiManager\Exceptions\ApiManagerException;
+use lShamanl\ApiManager\Services\ApiService\ApiService;
 use Exception;
 use GuzzleHttp\Exception\GuzzleException;
 
 /**
  * Class ApiManager
  * @method SendInfo send($method, array $getParams, array $postParams)
- * @package ApiManager\Application
+ * @package lShamanl\ApiManager
  */
 class ApiManager
 {
@@ -52,7 +52,7 @@ class ApiManager
      * @param array $postParams
      * @return SendInfo
      * @throws GuzzleException
-     * @throws MainAppException
+     * @throws ApiManagerException
      */
     public function __invoke($method = self::GET_QUERY, array $getParams = [], array $postParams = [])
     {
@@ -71,18 +71,18 @@ class ApiManager
             case self::POST_JSON: return $apiManagerClone->sendPostJson();
         }
 
-        throw new MainAppException('Не существующий метод');
+        throw new ApiManagerException('Не существующий метод');
     }
 
     /**
      * @param string $url
      * @return $this
-     * @throws MainAppException
+     * @throws ApiManagerException
      */
     public function setUrl($url)
     {
         if (!filter_var($url, FILTER_VALIDATE_URL)) {
-            throw new MainAppException("Кажется это '{$url}' - не является URL");
+            throw new ApiManagerException("Кажется это '{$url}' - не является URL");
         }
 
         $this->url = $url;
@@ -94,7 +94,7 @@ class ApiManager
      * @param $arguments
      * @return SendInfo|null
      * @throws GuzzleException
-     * @throws MainAppException
+     * @throws ApiManagerException
      */
     public function __call($name, $arguments)
     {
