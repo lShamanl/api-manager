@@ -1,7 +1,7 @@
 <?php
 
 
-use ApiAnswer\Application\ApiAnswer;
+use lShamanl\ApiAnswer\ApiAnswer;
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
@@ -22,5 +22,6 @@ try {
         }
     }
 } catch (Exception $e) {
-    ApiAnswer::responseError($e);
+    echo new ApiAnswer(false, $e->getCode(), $e->getMessage());
+    http_response_code($e->getCode());
 }

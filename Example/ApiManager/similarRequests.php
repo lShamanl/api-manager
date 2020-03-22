@@ -6,6 +6,7 @@ require_once __DIR__ . '/src/bootstrap.php';
 
 use GuzzleHttp\Exception\GuzzleException;
 use lShamanl\ApiAnswer\ApiAnswer;
+use lShamanl\ApiAnswer\StatusCode;
 use lShamanl\ApiManager\ApiManager;
 use lShamanl\ApiManager\Classes\DataGuard;
 
@@ -27,12 +28,12 @@ try {
     $a = $apiManager->send(ApiManager::POST_FORM_DATA, [], ['fio' => 'Имя 1', 'phone' => 16546846848]);
     $b = $apiManager(ApiManager::POST_FORM_DATA, [], ['fio' => 'Имя 33', 'phone' => 355413485]);
 
-    echo ApiAnswer::responseOk('Принято', ApiAnswer::CODE_202_ACCEPTED, true);
-    exit;
+    echo new ApiAnswer(true, StatusCode::HTTP_OK,'Принято');
+    http_response_code(StatusCode::HTTP_OK);
 } catch (Exception $e) {
-    echo ApiAnswer::responseError($e, true);
-    exit;
+    echo new ApiAnswer(false, $e->getCode(), $e->getMessage());
+    http_response_code($e->getCode());
 } catch (GuzzleException $e) {
-    echo ApiAnswer::responseError($e, true);
-    exit;
+    echo new ApiAnswer(false, $e->getCode(), $e->getMessage());
+    http_response_code($e->getCode());
 }

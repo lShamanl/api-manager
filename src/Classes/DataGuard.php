@@ -2,7 +2,8 @@
 
 
 namespace lShamanl\ApiManager\Classes;
-use ApiAnswer\Application\ApiAnswer;
+
+use lShamanl\ApiAnswer\StatusCode;
 use lShamanl\ApiManager\Exceptions\InvalidDataException;
 
 
@@ -17,7 +18,7 @@ class DataGuard
     {
         foreach ($params as $key => $param) {
             if (!isset($param)) {
-                throw new InvalidDataException("Обязательное поле '{$key}' не было получено",ApiAnswer::CODE_400_BAD_REQUEST);
+                throw new InvalidDataException("Обязательное поле '{$key}' не было получено",StatusCode::HTTP_BAD_REQUEST);
             }
         }
     }
